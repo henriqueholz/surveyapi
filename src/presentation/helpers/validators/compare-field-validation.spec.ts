@@ -1,7 +1,7 @@
 import { InvalidParamError } from '@/presentation/errors'
 import { CompareFieldsValidation } from './compare-fields-validation'
 
-const MakeSut = (): CompareFieldsValidation => {
+const makeSut = (): CompareFieldsValidation => {
   return new CompareFieldsValidation('field', 'fieldToCompare')
 }
 
