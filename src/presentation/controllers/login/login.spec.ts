@@ -1,5 +1,5 @@
-import { MissingParamError, UnauthorizedError } from '@/presentation/errors'
-import { badRequest, ok, serverError } from '@/presentation/helpers/http/http-helper'
+import { MissingParamError } from '@/presentation/errors'
+import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers/http/http-helper'
 import { LoginController } from './login'
 import { Authentication, AuthenticationModel, HttpRequest, Validation } from './login-protocols'
 
@@ -29,7 +29,7 @@ const makeValidationStub = (): Validation => {
 
 const makeFakeRequest = (): HttpRequest => ({
   body: {
-    email: 'any_email@mail.com',
+    email: 'any_email@gmail.com',
     password: 'any_password'
   }
 })
@@ -60,7 +60,7 @@ describe('Login Controller', () => {
     const { sut, authenticationStub } = makeSut()
     jest.spyOn(authenticationStub, 'auth').mockReturnValueOnce(new Promise(resolve => resolve(null)))
     const httpResponse = await sut.handle(makeFakeRequest())
-    expect(httpResponse).toEqual(new UnauthorizedError())
+    expect(httpResponse).toEqual(unauthorized())
   })
 
   test('Should return 500 if Authentication throws', async () => {

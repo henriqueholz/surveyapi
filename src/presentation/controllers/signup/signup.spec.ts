@@ -31,7 +31,7 @@ const makeFakeAccount = (): AccountModel => ({
 const makeFakeRequest = (): HttpRequest => ({
   body: {
     name: 'any_name',
-    email: 'any_email@mail.com',
+    email: 'any_email@gmail.com',
     password: 'any_password',
     passwordConfirmation: 'any_password'
   }
@@ -70,7 +70,7 @@ describe('SignUp Controller', () => {
     await sut.handle(makeFakeRequest())
     expect(addSpy).toHaveBeenCalledWith({
       name: 'any_name',
-      email: 'any_email',
+      email: 'any_email@gmail.com',
       password: 'any_password'
     })
   })

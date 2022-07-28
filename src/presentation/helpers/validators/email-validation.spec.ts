@@ -37,8 +37,8 @@ describe('Email Validation', () => {
   test('Should call EmailValidator with correct email', () => {
     const { sut, emailValidatorStub } = makeSut()
     const isValidSpy = jest.spyOn(emailValidatorStub, 'isValid')
-    sut.validate('any_email@mail.com')
-    expect(isValidSpy).toHaveBeenCalledWith('any_email@mail.com')
+    sut.validate('any_email@gmail.com')
+    expect(isValidSpy).toHaveBeenCalledWith('any_email@gmail.com')
   })
 
   test('Should throw if EmailValidator throws', () => {
