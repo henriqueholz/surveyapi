@@ -41,7 +41,7 @@ describe('Bcrypt Adapter', () => {
     const salt = 12
     const sut = new BcryptAdapter(salt)
     const compareSpy = jest.spyOn(bcrypt, 'compare')
-    await sut.compare('any_value', 'any_value')
+    await sut.compare('any_value', 'any_hash')
     expect(compareSpy).toHaveBeenCalledWith('any_value', 'any_hash')
   })
 
