@@ -50,5 +50,22 @@ describe('Login Routes', () => {
         })
         .expect(200)
     })
+
+    test('Should return 401 on login', async () => {
+      const password = await hash('123', 12)
+      await accountCollection.insertOne({
+        name: 'Henrique',
+        email: 'henriqueholz@live.com',
+        password: '123',
+        passwordConfirmation: password
+      })
+      await request(app)
+        .post('/api/login')
+        .send({
+          email: 'henriqueholz@live.com',
+          password: '123'
+        })
+        .expect(401)
+    })
   })
 })
