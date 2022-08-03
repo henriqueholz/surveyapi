@@ -7,7 +7,6 @@
     "sourceMap": true,
     "rootDirs": [
       "src",
-      "tests"
     ],
     "baseUrl": "src",
     "paths": {
@@ -23,5 +22,8 @@
     "src",
     "tests"
   ],
-  "exclude": []
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
 }
