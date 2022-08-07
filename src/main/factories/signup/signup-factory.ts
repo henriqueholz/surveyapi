@@ -1,6 +1,6 @@
 import { Controller } from '@/presentation/protocols'
 import { makeSignUpValidation } from './signup-validation-factory'
-import { SignUpController } from '@/presentation/controllers/signup/signup-controller'
+import { SignUpController } from '@/presentation/controllers/signup/signup'
 import { LogControllerDecorator } from '@/main/decorators/log-controller-decorator'
 import { BcryptAdapter } from '@/infra/criptography/bcrypt-adapter/bcrypt-adapter'
 import { DbAddAccount } from '@/data/usecases/add-account/db-add-account'
