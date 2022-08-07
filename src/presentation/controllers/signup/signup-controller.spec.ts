@@ -1,7 +1,7 @@
 import { SignUpController } from './signup-controller'
 import { MissingParamError, ServerError } from '../../errors'
 import { AddAccount, AddAccountModel, AccountModel, Validation, HttpRequest, Authentication, AuthenticationModel } from './signup-controller-protocols'
-import { badRequest } from '../../helpers/http/http-helper'
+import { badRequest, ok, serverError } from '../../helpers/http/http-helper'
 
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
@@ -24,7 +24,7 @@ const makeAuthentication = (): Authentication => {
 const makeValidation = (): Validation => {
   class ValidationStub implements Validation {
     validate (input: any): Error {
-      return null
+      return Error()
     }
   }
   return new ValidationStub()
@@ -73,7 +73,7 @@ describe('SignUp Controller', () => {
       throw new Error()
     })
     const httpResponse = await sut.handle(makeFakeRequest())
-    expect(httpResponse).toEqual(serverError(new ServerError(null)))
+    expect(httpResponse).toEqual(serverError(new ServerError('Error')))
   })
 
   test('Should call addAccount with correct values', async () => {
@@ -90,7 +90,7 @@ describe('SignUp Controller', () => {
   test('Should return 200 if valid data is provided', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(makeFakeRequest())
-    expect(httpResponse).toEqual(ok(makeFakeAccount()))
+    expect(httpResponse).toEqual(ok({ accessToken: 'any_token' }))
   })
 
   test('Should call Validation with correct value', async () => {
